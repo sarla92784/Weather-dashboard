@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Weather Dashboard - Real-time weather data with 5-day forecast" />
+  <title>WeatherLens – Real-Time Weather Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-icon">🌤️</span>
+        <span class="brand-name">WeatherLens</span>
+      </div>
+      <div class="header-controls">
+        <button class="btn-icon" id="themeToggleBtn" aria-label="Toggle theme" title="Toggle theme">
+          <span id="themeIcon">🌙</span>
+        </button>
+        <button class="btn-icon" id="locationBtn" aria-label="Use my location" title="Use my location">
+          📍
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="search-section">
+      <div class="search-container">
+        <div class="search-box" role="search">
+          <label for="cityInput" class="sr-only">Search city</label>
+          <span class="search-icon">🔍</span>
+          <input type="text" id="cityInput" class="search-input"
+            placeholder="Search city… e.g. Delhi, Mumbai, London"
+            autocomplete="off" />
+          <button class="search-btn" id="searchBtn">Search</button>
+        </div>
+        <ul id="suggestionsBox" class="suggestions" role="listbox" hidden></ul>
+      </div>
+      <div class="favorites-bar" id="favoritesBar"></div>
+    </section>
+
+    <div class="error-banner" id="errorBanner" role="alert" hidden>
+      <span class="error-icon">⚠️</span>
+      <span id="errorMessage">Something went wrong.</span>
+      <button class="error-close" id="errorClose">✕</button>
+    </div>
+
+    <div class="skeleton-wrapper" id="skeletonLoader" hidden>
+      <div class="skeleton skeleton-hero"></div>
+      <div class="skeleton-row">
+        <div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div>
+      </div>
+    </div>
+
+    <div class="weather-content" id="weatherContent" hidden>
+      <section class="current-weather" id="currentWeather">
+        <div class="current-top">
+          <div class="city-info">
+            <h1 class="city-name" id="cityName">—</h1>
+            <p class="city-meta" id="cityMeta">—</p>
+            <p class="last-updated" id="lastUpdated">—</p>
+          </div>
+          <div class="weather-icon-wrap">
+            <img id="weatherIcon" src="" alt="" class="weather-icon" width="100" height="100" />
+          </div>
+        </div>
+        <div class="current-bottom">
+          <div class="temp-block">
+            <span class="temp-value" id="tempValue">—</span>
+            <div class="unit-toggle" role="group" aria-label="Temperature unit">
+              <button class="unit-btn active" id="btnCelsius" data-unit="metric">°C</button>
+              <span>/</span>
+              <button class="unit-btn" id="btnFahrenheit" data-unit="imperial">°F</button>
+            </div>
+          </div>
+          <p class="weather-desc" id="weatherDesc">—</p>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="stat-label">Feels like</span>
+              <span class="stat-value" id="feelsLike">—</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Humidity</span>
+              <span class="stat-value" id="humidity">—</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Wind</span>
+              <span class="stat-value" id="windSpeed">—</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Visibility</span>
+              <span class="stat-value" id="visibility">—</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Pressure</span>
+              <span class="stat-value" id="pressure">—</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">UV Index</span>
+              <span class="stat-value" id="uvIndex">—</span>
+            </div>
+          </div>
+        </div>
+        <button class="fav-btn" id="favBtn">☆ Save City</button>
+      </section>
+
+      <section class="forecast-section">
+        <h2 class="section-title">5-Day Forecast</h2>
+        <div class="forecast-grid" id="forecastGrid"></div>
+      </section>
+
+      <section class="hourly-section">
+        <h2 class="section-title">Today's Hourly</h2>
+        <div class="hourly-scroll" id="hourlyScroll"></div>
+      </section>
+    </div>
+
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">🌍</div>
+      <h2 class="empty-title">Check the Weather Anywhere</h2>
+      <p class="empty-sub">Search a city above or use your current location.</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Data from <a href="https://openweathermap.org" target="_blank" rel="noopener">OpenWeatherMap</a> · Built with ❤️ for Week 6 Assignment</p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
